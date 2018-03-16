@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
 
+## Prerequisites
+
+- [NodeJS 8.9.4](https://nodejs.org/download/release/v8.9.4/node-v8.9.4-x64.msi) 
+- [@angular/cli](https://cli.angular.io/)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
