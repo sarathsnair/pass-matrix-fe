@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HomeComponent } from './home/home.component';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  public onClickLogin() {
+    console.log('LOGIN CLICKED');
+  }
+  public onClickRegister() {
+    console.log('REGISTER CLICKED');
+  }
 }
