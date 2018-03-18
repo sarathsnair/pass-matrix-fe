@@ -1,3 +1,5 @@
+import { PassMatrixService } from './pass-matrix.service';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import {HttpModule} from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -20,9 +23,13 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialComponentsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    PassMatrixService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
