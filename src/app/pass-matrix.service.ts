@@ -17,39 +17,19 @@ export class PassMatrixService {
   // Injecting the http client into the service
   constructor(private http: Http) { }
 
-  // Method retrieve all the posts
+  // submit data to the server
   submitFormData(data) {
-    return this.http.post(this.postUrl, data)
-      .map(this.parseData)
-      .catch(this.handleError);
-  }
-
-  // This method parses the data to JSON
-  private parseData(res: Response) {
-    return res.json() || [];
-  }
-
-  // Displays the error message
-  private handleError(error: Response | any) {
-    let errorMessage: string;
-
-    errorMessage = error.message ? error.message : error.toString();
-
-    // In real world application, call to log error to remote server
-    // logError(error);
-
-    // This returns another Observable for the observer to subscribe to
-    return Observable.throw(errorMessage);
+    return this.http.post(this.postUrl, data);
   }
 
 
-  getImage(imageUrl: string): Observable<File> {
+  getImage(imageUrl) {
     return this.http
       .get(imageUrl, { responseType: ResponseContentType.Blob })
       .map((res: Response) => res.blob());
   }
 
-  createImageToBase64FromBlob(blob) {
+  convertImageToBase64FromBlob(blob) {
     const reader = new FileReader();
     if (blob) {
       reader.readAsDataURL(blob);

@@ -67,7 +67,8 @@ export class RegisterComponent implements OnInit {
   submitDataToServer(data) {
     this.passMatrixService.submitFormData(data)
       .subscribe(function (data) {
-        if (data.result === 'SUCCESS') {
+        if (data) {
+          // registration success
         }
       }, function (error) {
         console.log(error);
@@ -84,7 +85,7 @@ export class RegisterComponent implements OnInit {
 
     this.passMatrixService.getImage(imageUrl)
       .subscribe(function (image) {
-        this.passMatrixService.createImageToBase64FromBlob(image)
+        this.passMatrixService.convertImageToBase64FromBlob(image)
           .subscribe(function (base64EncodedString) {
             const obj = {
               username: this.username,
