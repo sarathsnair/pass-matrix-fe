@@ -5,6 +5,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   imports: [
     MatButtonModule,
@@ -13,7 +14,8 @@ import { MatInputModule } from '@angular/material';
     MatGridListModule,
     MatStepperModule,
     MatFormFieldModule,
-    MatInputModule],
+    MatInputModule,
+    MatSnackBarModule],
   exports: [
     MatButtonModule,
     MatCheckboxModule,
@@ -21,6 +23,7 @@ import { MatInputModule } from '@angular/material';
     MatGridListModule,
     MatStepperModule,
     MatFormFieldModule,
-    MatInputModule],
+    MatInputModule,
+    MatSnackBarModule],
 })
 export class MaterialComponentsModule { }

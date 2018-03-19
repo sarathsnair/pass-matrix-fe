@@ -51,3 +51,18 @@ img.image-tile {
     color: white;
     font-size: 2em;
 }
+
+.image-list-wrapper,
+.selected-image-wrapper {
+    position: relative;
+    margin: auto;
+    max-height: 35%;
+}
+
+.image-list-wrapper {
+    max-width: 40%;
+}
+
+.selected-image-wrapper {
+    max-width: 25%;
+}

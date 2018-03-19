@@ -1,6 +1,6 @@
-<button mat-raised-button (click)="isLinear = true" id="toggle-linear">Enable linear mode</button>
+<!-- <button mat-raised-button (click)="isLinear = true" id="toggle-linear">Enable linear mode</button> -->
 
-<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper #stepper>
 
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
@@ -9,7 +9,7 @@
         <input matInput placeholder="Username" formControlName="firstCtrl" required [(ngModel)]="username">
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext (click)="gotoNextStep(stepper)">Next</button>
       </div>
     </form>
   </mat-step>
@@ -17,16 +17,17 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Select Image</ng-template>
-      <mat-grid-list cols="2" rowHeight="16:9" layout-align="center center">
-        <mat-grid-tile *ngFor="let image of images; let i = index">
-          <img class="image-tile" [ngClass]="{'selected': currSelectedImage == image}" (click)="onClickImage($event, image)" src="{{image.url}}"
-            alt="" style="width:200px; height:200px">
-        </mat-grid-tile>
-      </mat-grid-list>
-
+      <div class="image-list-wrapper">
+        <mat-grid-list cols="2" layout-align="">
+          <mat-grid-tile *ngFor="let image of images; let i = index">
+            <img class="image-tile" [ngClass]="{'selected': currSelectedImage == image}" (click)="onClickImage($event, image)" src="{{image.url}}"
+              alt="" style="width:200px; height:200px">
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext (click)="gotoNextStep(stepper)">Next</button>
       </div>
     </form>
   </mat-step>
@@ -34,21 +35,23 @@
   <mat-step [stepControl]="thirdFormGroup">
     <form [formGroup]="thirdFormGroup">
       <ng-template matStepLabel>Select Image Block</ng-template>
-      <mat-grid-list *ngIf="currSelectedImage" cols="1" rowHeight="16:9" layout-align="center center">
-        <mat-grid-tile>
-          <div class="selectedImageWrapper">
-            <img class="selected-image" src="{{currSelectedImage.url}}" alt="">
-            <div class="image-overlay">
-              <mat-grid-list cols="{{gridSize.columns}}">
-                <mat-grid-tile [ngClass]="{'selected': selectedGridId == gridId}" class="grid-cell" *ngFor="let gridId of gridCells" (click)="onSelectGridTile($event, gridId)">{{gridId}}</mat-grid-tile>
-              </mat-grid-list>
+      <div class="selected-image-wrapper">
+        <mat-grid-list *ngIf="currSelectedImage" cols="1" layout-align="center center">
+          <mat-grid-tile>
+            <div class="selectedImageWrapper">
+              <img class="selected-image" src="{{currSelectedImage.url}}" alt="">
+              <div class="image-overlay">
+                <mat-grid-list cols="{{gridSize.columns}}">
+                  <mat-grid-tile [ngClass]="{'selected': selectedGridId == gridId}" class="grid-cell" *ngFor="let gridId of gridCells" (click)="onSelectGridTile($event, gridId)">{{gridId}}</mat-grid-tile>
+                </mat-grid-list>
+              </div>
             </div>
-          </div>
-        </mat-grid-tile>
-      </mat-grid-list>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext (click)="gotoNextStep(stepper)">Next</button>
       </div>
     </form>
   </mat-step>
@@ -58,8 +61,7 @@
     Submit to server?
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button (click)="submitData()">Submit</button>
+      <button mat-button (click)="submitData()">SUBMIT</button>
     </div>
   </mat-step>
 

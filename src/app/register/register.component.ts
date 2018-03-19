@@ -1,6 +1,7 @@
 import { PassMatrixService } from './../pass-matrix.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -41,7 +42,8 @@ export class RegisterComponent implements OnInit {
   self = this;
 
   constructor(private _formBuilder: FormBuilder,
-    private passMatrixService: PassMatrixService) { }
+    private passMatrixService: PassMatrixService,
+    private router: Router) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -69,8 +71,10 @@ export class RegisterComponent implements OnInit {
       .subscribe(function (data) {
         if (data) {
           // registration success
+          this.passMatrixService.showSnackBar('Data submitted successfully. Redirecting to Login');
+          this.router.navigateByUrl('/login');
         }
-      }, function (error) {
+      }.bind(this), function (error) {
         console.log(error);
       });
   }
@@ -95,5 +99,38 @@ export class RegisterComponent implements OnInit {
             this.submitDataToServer(obj);
           }.bind(this));
       }.bind(this));
+  }
+
+  gotoNextStep(stepper) {
+    if (stepper.selectedIndex === 1) {
+      if (!this.username) {
+        this.passMatrixService.showSnackBar('Please fill username field');
+        stepper.selectedIndex = 0;
+        // stepper.previous();
+      } else {
+        stepper.selectedIndex = 1;
+        this.passMatrixService.hideSnackBar();
+      }
+    }
+
+    if (stepper.selectedIndex === 2) {
+      if (!this.currSelectedImage) {
+        this.passMatrixService.showSnackBar('Please select an image from the list');
+        stepper.selectedIndex = 1;
+      } else {
+        stepper.selectedIndex = 2;
+        this.passMatrixService.hideSnackBar();
+      }
+    }
+
+    if (stepper.selectedIndex === 3) {
+      if (!this.selectedGridId) {
+        this.passMatrixService.showSnackBar('Please select a tile');
+        stepper.selectedIndex = 2;
+      } else {
+        stepper.selectedIndex = 3;
+        this.passMatrixService.hideSnackBar();
+      }
+    }
   }
 }

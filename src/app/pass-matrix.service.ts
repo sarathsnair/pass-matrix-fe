@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { Http, Response, ResponseContentType } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
@@ -15,7 +16,8 @@ export class PassMatrixService {
   private postUrl = 'https://jsonplaceholder.typicode.com/posts';
 
   // Injecting the http client into the service
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+    public snackBar: MatSnackBar) { }
 
   // submit data to the server
   submitFormData(data) {
@@ -42,5 +44,18 @@ export class PassMatrixService {
     });
   }
 
+  showSnackBar(message, options = {}) {
+    let message = message || '';
+    let duration = options.duration || null;
+    let action = options.action || 'OK';
+
+    this.snackBar.open(message, action, {
+      duration: duration
+    });
+  }
+
+  hideSnackBar() {
+    this.snackBar.dismiss();
+  }
 
 }
