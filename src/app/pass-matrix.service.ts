@@ -45,12 +45,14 @@ export class PassMatrixService {
   }
 
   showSnackBar(message, options = {}) {
-    let message = message || '';
-    let duration = options.duration || null;
-    let action = options.action || 'OK';
 
-    this.snackBar.open(message, action, {
-      duration: duration
+    let snackBarMessage = message || '',
+        snackBarAction = options.action || 'OK',
+        snackBarDuration = options.duration || null;
+
+
+    this.snackBar.open(snackBarMessage, snackBarAction, {
+      duration: snackBarDuration
     });
   }
 
