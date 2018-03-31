@@ -47,8 +47,8 @@ export class PassMatrixService {
   showSnackBar(message, options = {}) {
 
     let snackBarMessage = message || '',
-        snackBarAction = options.action || 'OK',
-        snackBarDuration = options.duration || null;
+        snackBarAction = options['action'] || 'OK',
+        snackBarDuration = options['duration'] || null;
 
 
     this.snackBar.open(snackBarMessage, snackBarAction, {
