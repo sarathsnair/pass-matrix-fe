@@ -1,0 +1,23 @@
+img {
+    border: solid 1px black;
+}
+
+img.image-tile {
+    cursor: pointer;
+}
+
+.selected {
+    box-shadow: 0px 12px 22px 1px #333;
+}
+
+.selectedImageWrapper {
+    position: relative;
+}
+
+.selectedImageWrapper .selected-image {
+    display: block;
+}
+
+.image-list-wrapper {
+  max-width: 40%;
+}

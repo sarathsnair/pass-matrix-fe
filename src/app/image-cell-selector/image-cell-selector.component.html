@@ -1,0 +1,32 @@
+<div class="image-cell-selector-wrapper">
+    <div class="horizontal-bar-wrapper">
+        <div class="ok-btn">
+            <button mat-mini-fab color="primary" (click)="onClickOkButton()">OK</button>
+        </div>
+        <div class="letters-wrapper">
+            <span class="left icon" (click)="onClickArrow('left')">&lt;</span>
+            <div class="letters">
+                <div *ngFor="let letter of letters"><span>{{letter}}</span></div>
+            </div>
+            <span class="right icon" (click)="onClickArrow('right')">&gt;</span>
+        </div>
+    </div>
+    <div class="vertical-bar-wrapper">
+        <div class="numbers-wrapper">
+            <span class="top icon" (click)="onClickArrow('top')">^</span>
+            <div class="numbers">
+                <div *ngFor="let number of numbers"><span>{{number}}</span></div>
+            </div>
+            <span class="bottom icon" (click)="onClickArrow('bottom')">^</span>
+        </div>
+        <div class="selected-image-wrapper">
+            <img *ngIf="image && image.type == 'normal'" src="{{image.url}}" alt="" height="200px" width="200px" style="opacity: 0.5">
+            <img *ngIf="image && image.type == 'base64'" src="{{image.imageData}}" alt="" height="200px" width="200px" style="opacity: 0.5">
+            <div class="overlay">
+                <mat-grid-list cols="{{size}}">
+                    <mat-grid-tile class="grid-cell" [ngClass]="{'selected': cellId == selectedCell}" *ngFor="let cellId of gridCells">{{cellId}}</mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </div>
+    </div>
+</div>

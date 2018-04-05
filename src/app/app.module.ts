@@ -11,13 +11,15 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {HttpModule} from '@angular/http';
+import { ImageCellSelectorComponent } from './image-cell-selector/image-cell-selector.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ImageCellSelectorComponent
   ],
   imports: [
     BrowserModule,

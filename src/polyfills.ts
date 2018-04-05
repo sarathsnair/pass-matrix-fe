@@ -74,3 +74,39 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  * Need to import at least one locale-data with intl.
  */
 // import 'intl/locale-data/jsonp/en';
+
+
+declare global {
+  interface Array<T> {
+    rotate(rotateBy: number): T[];
+    shuffle(): T[];
+  }
+}
+
+if (!Array.prototype['rotate']) {
+
+  Array.prototype.rotate = (function () {
+    const unshift = Array.prototype.unshift,
+      splice = Array.prototype.splice;
+
+    return function (count: number) {
+      const len = this.length >>> 0,
+      count = count >> 0;
+
+      unshift.apply(this, splice.call(this, count % len, len));
+      return this;
+    };
+  })();
+}
+
+
+Array.prototype['shuffle'] = function () {
+  let i = this.length;
+  while (i) {
+    let j = Math.floor(Math.random() * i);
+    let t = this[--i];
+    this[i] = this[j];
+    this[j] = t;
+  }
+  return this;
+};
