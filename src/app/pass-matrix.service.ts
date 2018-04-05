@@ -13,8 +13,8 @@ import 'rxjs/add/operator/map';
 export class PassMatrixService {
 
   // Url to API
-  private postUrl = 'https://jsonplaceholder.typicode.com/posts';
-
+  // private postUrl = 'https://jsonplaceholder.typicode.com/posts';
+  private postUrl = 'http://localhost:5000';
   // Injecting the http client into the service
   constructor(private http: Http,
     public snackBar: MatSnackBar) { }
