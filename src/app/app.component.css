@@ -1,0 +1,18 @@
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.content-wrapper{
+  position: absolute;
+  top: 64px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.example-icon{
+  cursor: pointer;
+  outline: none;
+}

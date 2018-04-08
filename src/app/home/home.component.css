@@ -1,0 +1,26 @@
+.wrapper {
+    height: 100%;
+}
+
+.home-screen-container {
+    display: flex;
+    height: 100%;
+    flex-flow: row wrap;
+    background: #1A2980;
+    background: linear-gradient(to top, #ffffff, #3f51b5ad);
+}
+
+.register-wrapper,
+.login-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.register-wrapper:hover,
+.login-wrapper:hover {
+    background: #ffffff52;
+    color: white;
+}

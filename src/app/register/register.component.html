@@ -1,68 +1,69 @@
-<!-- <button mat-raised-button (click)="isLinear = true" id="toggle-linear">Enable linear mode</button> -->
+<div class="wrapper">
 
-<mat-horizontal-stepper #stepper>
+    <mat-horizontal-stepper #stepper>
 
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Select Username*</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Username" formControlName="firstCtrl" required [(ngModel)]="username">
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext (click)="gotoNextStep(stepper)">Next</button>
-      </div>
-    </form>
-  </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Select Username*</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Username" formControlName="firstCtrl" required [(ngModel)]="username">
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext (click)="gotoNextStep(stepper)">Next</button>
+                </div>
+            </form>
+        </mat-step>
 
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Select Image</ng-template>
-      <div class="image-list-wrapper">
-        <mat-grid-list cols="2" layout-align="">
-          <mat-grid-tile *ngFor="let image of images; let i = index">
-            <img class="image-tile" [ngClass]="{'selected': currSelectedImage == image}" (click)="onClickImage($event, image)" src="{{image.url}}"
-              alt="" style="width:200px; height:200px">
-          </mat-grid-tile>
-        </mat-grid-list>
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext (click)="gotoNextStep(stepper)">Next</button>
-      </div>
-    </form>
-  </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Select Image</ng-template>
+                <div class="image-list-wrapper">
+                    <mat-grid-list cols="2" layout-align="">
+                        <mat-grid-tile *ngFor="let image of images; let i = index">
+                            <img class="image-tile" [ngClass]="{'selected': currSelectedImage == image}" (click)="onClickImage($event, image)" src="{{image.url}}" alt="" style="width:200px; height:200px">
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext (click)="gotoNextStep(stepper)">Next</button>
+                </div>
+            </form>
+        </mat-step>
 
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>Select Image Block</ng-template>
-      <div class="selected-image-wrapper">
-        <mat-grid-list *ngIf="currSelectedImage" cols="1" layout-align="center center">
-          <mat-grid-tile>
-            <div class="selectedImageWrapper">
-              <img class="selected-image" src="{{currSelectedImage.url}}" alt="">
-              <div class="image-overlay">
-                <mat-grid-list cols="{{gridSize.columns}}">
-                  <mat-grid-tile [ngClass]="{'selected': selectedGridId == gridId}" class="grid-cell" *ngFor="let gridId of gridCells" (click)="onSelectGridTile($event, gridId)">{{gridId}}</mat-grid-tile>
-                </mat-grid-list>
-              </div>
+        <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Select Image Block</ng-template>
+                <div class="selected-image-wrapper">
+                    <mat-grid-list *ngIf="currSelectedImage" cols="1" layout-align="center center">
+                        <mat-grid-tile>
+                            <div class="selectedImageWrapper">
+                                <img class="selected-image" src="{{currSelectedImage.url}}" alt="">
+                                <div class="image-overlay">
+                                    <mat-grid-list cols="{{gridSize.columns}}">
+                                        <mat-grid-tile [ngClass]="{'selected': selectedGridId == gridId}" class="grid-cell" *ngFor="let gridId of gridCells" (click)="onSelectGridTile($event, gridId)">{{gridId}}</mat-grid-tile>
+                                    </mat-grid-list>
+                                </div>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext (click)="gotoNextStep(stepper)">Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            Submit to server?
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="submitData()">SUBMIT</button>
             </div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext (click)="gotoNextStep(stepper)">Next</button>
-      </div>
-    </form>
-  </mat-step>
+        </mat-step>
 
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    Submit to server?
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="submitData()">SUBMIT</button>
-    </div>
-  </mat-step>
+    </mat-horizontal-stepper>
 
-</mat-horizontal-stepper>
+</div>

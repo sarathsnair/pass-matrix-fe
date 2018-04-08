@@ -1,11 +1,11 @@
-<h1 class="mat-display-1">Choose your option</h1>
-<div class="app-content-wrapper">
-    <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>
-            <button mat-button (click)="onClickLogin()" routerLink="/login">Login</button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <button mat-button (click)="onClickRegister()" routerLink="/register">Register</button>
-        </mat-grid-tile>
-    </mat-grid-list>
+<!-- <h1 class="mat-display-1">Choose your option</h1> -->
+<div class="wrapper">
+    <div class="home-screen-container">
+        <div class="login-wrapper" routerLink="/login">
+            <h1 class="mat-display-2">Login</h1>
+        </div>
+        <div class="register-wrapper" routerLink="/register">
+            <h1 class="mat-display-2">Register</h1>
+        </div>
+    </div>
 </div>

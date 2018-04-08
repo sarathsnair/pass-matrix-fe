@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
   }
 
   submitDataToServer(data) {
-    this.passMatrixService.submitFormData(data)
+    this.passMatrixService.register(data)
       .subscribe(function (data) {
         if (data) {
           // registration success
@@ -76,6 +76,7 @@ export class RegisterComponent implements OnInit {
         }
       }.bind(this), function (error) {
         console.log(error);
+        this.passMatrixService.showSnackBar('Registration failed. Try again');
       });
   }
 
@@ -93,8 +94,8 @@ export class RegisterComponent implements OnInit {
           .subscribe(function (base64EncodedString) {
             const obj = {
               username: this.username,
-              base64Image: base64EncodedString,
-              gridid: gridId
+              imagedata: base64EncodedString,
+              cellid: gridId
             };
             this.submitDataToServer(obj);
           }.bind(this));
@@ -109,7 +110,7 @@ export class RegisterComponent implements OnInit {
         // stepper.previous();
       } else {
         stepper.selectedIndex = 1;
-        this.passMatrixService.hideSnackBar();
+        // this.passMatrixService.hideSnackBar();
       }
     }
 
@@ -119,7 +120,7 @@ export class RegisterComponent implements OnInit {
         stepper.selectedIndex = 1;
       } else {
         stepper.selectedIndex = 2;
-        this.passMatrixService.hideSnackBar();
+        // this.passMatrixService.hideSnackBar();
       }
     }
 
@@ -129,7 +130,7 @@ export class RegisterComponent implements OnInit {
         stepper.selectedIndex = 2;
       } else {
         stepper.selectedIndex = 3;
-        this.passMatrixService.hideSnackBar();
+        // this.passMatrixService.hideSnackBar();
       }
     }
   }

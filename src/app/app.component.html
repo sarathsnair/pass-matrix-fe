@@ -1,11 +1,11 @@
-<div class="app-wrapper mat-app-background">
-    <mat-toolbar>
-        <span>Pass Matrix</span>
+<div (window:resize)="onResize($event)" class="app-wrapper mat-app-background" [style.width.px]="innerWidth" [style.height.px]="innerHeight">
+
+    <mat-toolbar color="primary">
+        <h1>{{title}}</h1>
+        <span class="example-fill-remaining-space"></span>
+        <mat-icon routerLink="/home" class="example-icon">home</mat-icon>
     </mat-toolbar>
-    <nav>
-        <a routerLink="/home">Home</a>
-        <a routerLink="/login">Login</a>
-        <a routerLink="/register">Register</a>
-    </nav>
-    <router-outlet></router-outlet>
+    <div class="content-wrapper">
+        <router-outlet></router-outlet>
+    </div>
 </div>

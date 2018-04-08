@@ -91,9 +91,9 @@ if (!Array.prototype['rotate']) {
 
     return function (count: number) {
       const len = this.length >>> 0,
-      count = count >> 0;
+      cnt = count >> 0;
 
-      unshift.apply(this, splice.call(this, count % len, len));
+      unshift.apply(this, splice.call(this, cnt % len, len));
       return this;
     };
   })();

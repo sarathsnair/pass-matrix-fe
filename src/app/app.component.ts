@@ -7,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Pass Matrix';
+  innerHeight = window.innerHeight;
+  innerWidth = window.innerWidth;
+
   public onClickLogin() {
     console.log('LOGIN CLICKED');
   }
   public onClickRegister() {
     console.log('REGISTER CLICKED');
+  }
+
+  onResize(event) {
+    this.innerWidth = event.target.innerWidth;
+    this.innerHeight = event.target.innerHeight;
   }
 }

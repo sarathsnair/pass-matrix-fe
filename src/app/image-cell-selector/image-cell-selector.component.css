@@ -112,5 +112,5 @@ span.bottom {
 }
 
 .overlay .grid-cell.selected {
-    background: red;
+    /* background: red; */
 }
