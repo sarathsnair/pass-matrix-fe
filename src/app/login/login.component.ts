@@ -177,7 +177,7 @@ export class LoginComponent implements OnInit {
                     this.isLoggedIn = false;
                     this.passMatrixService.showSnackBar('Please check your credentials');
                   }
-                });
+                }.bind(this));
             }.bind(this));
         }.bind(this));
     }
