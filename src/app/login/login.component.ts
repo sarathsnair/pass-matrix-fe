@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   isImageSelected = false;
   currSelectedImageIndex = null;
 
+  isLoggedIn = false;
+
   images = [
     {
       url: '/assets/images/angry-bird.png'
@@ -81,12 +83,13 @@ export class LoginComponent implements OnInit {
         };
         this.passMatrixService.getUserSelectedImage(data)
           .subscribe(function (resp) {
-            if (!resp) {
+            if (resp._body == false) {
               this
                 .passMatrixService
                 .showSnackBar('No image set for this user. Please register first');
+                stepper.selectedIndex = 0;
             } else {
-              this.userSelectedImage = resp;
+              this.userSelectedImage = decodeURIComponent(resp._body);
               this.processedImages = this.originalProcessedImages;
               this.processedImages.splice(this.getRandomImageIndex(), 0, {
                 imageData: this.userSelectedImage,
@@ -160,13 +163,20 @@ export class LoginComponent implements OnInit {
             .subscribe(function (base64EncodedString) {
               const data = {
                 username: this.username,
-                base64Image: base64EncodedString,
-                selectedGridId: this.selectedGridId
+                imagedata: encodeURIComponent(base64EncodedString),
+                cellid: this.selectedGridId
               };
               this.passMatrixService.login(data)
-                .subscribe(function(resp){
+                .subscribe(function (resp) {
                   // check if login success here
                   console.log(resp);
+                  if (resp.text() == 'true') {
+                    this.isLoggedIn = true;
+                    this.passMatrixService.showSnackBar(this.username + ' successfully loggedin');
+                  } else {
+                    this.isLoggedIn = false;
+                    this.passMatrixService.showSnackBar('Please check your credentials');
+                  }
                 });
             }.bind(this));
         }.bind(this));
@@ -175,13 +185,20 @@ export class LoginComponent implements OnInit {
     if (this.selectedImage && this.selectedImage.type === 'base64') {
       const data = {
         username: this.username,
-        base64Image: this.selectedImage.ImageData,
-        selectedGridId: this.selectedGridId
+        imagedata: encodeURIComponent(this.selectedImage.imageData),
+        cellid: this.selectedGridId
       };
       this.passMatrixService.login(data)
-        .subscribe(function(resp){
+        .subscribe(function (resp) {
           console.log(resp);
-        });
+          if (resp.text() == 'true') {
+            this.isLoggedIn = true;
+            this.passMatrixService.showSnackBar(this.username + ' successfully loggedin');
+          } else {
+            this.isLoggedIn = false;
+            this.passMatrixService.showSnackBar('Please check your credentials');
+          }
+        }.bind(this));
     }
   }
 }

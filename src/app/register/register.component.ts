@@ -77,7 +77,7 @@ export class RegisterComponent implements OnInit {
       }.bind(this), function (error) {
         console.log(error);
         this.passMatrixService.showSnackBar('Registration failed. Try again');
-      });
+      }.bind(this));
   }
 
   submitData() {
@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
           .subscribe(function (base64EncodedString) {
             const obj = {
               username: this.username,
-              imagedata: base64EncodedString,
+              imagedata: encodeURIComponent(base64EncodedString),
               cellid: gridId
             };
             this.submitDataToServer(obj);
