@@ -53,7 +53,7 @@
                     </mat-grid-list>
                 </div> -->
                 <div>
-                    <app-image-cell-selector [image]='currSelectedImage' (onGridSelected)="onGridSelected($event)" loginCellId="{{loginCell}}" [size]="3" image=""></app-image-cell-selector>
+                    <app-image-cell-selector [image]='currSelectedImage' (onGridSelected)="onGridSelected($event)" loginCellId="{{loginCell}}" [size]="gridSize" image=""></app-image-cell-selector>
                 </div>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>

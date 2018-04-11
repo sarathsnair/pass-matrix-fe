@@ -32,8 +32,8 @@ export class RegisterComponent implements OnInit {
   selectedGridId = null;
 
   gridSize = {
-    columns: 3,
-    rows: 3
+    columns: 5,
+    rows: 5
   };
   username = '';
   gridCells = Array(this.gridSize.columns * this.gridSize.rows)

@@ -36,9 +36,9 @@ export class LoginComponent implements OnInit {
   ];
 
 
-  letters = ['A', 'B', 'C'];
-  numbers = [1, 2, 3];
-
+  letters = [];
+  numbers = [];
+  gridSize = 5; // change grid size here
 
   originalProcessedImages = this.images.map(function (imageItem) {
     return {
@@ -56,7 +56,11 @@ export class LoginComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
     private passMatrixService: PassMatrixService,
-    private router: Router) { }
+    private router: Router) {
+    this.letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    this.numbers = Array(this.gridSize).fill(1).map((x, y) => x + y);
+    this.letters.length = this.gridSize;
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -87,7 +91,7 @@ export class LoginComponent implements OnInit {
               this
                 .passMatrixService
                 .showSnackBar('No image set for this user. Please register first');
-                stepper.selectedIndex = 0;
+              stepper.selectedIndex = 0;
             } else {
               this.userSelectedImage = decodeURIComponent(resp._body);
               this.processedImages = this.originalProcessedImages;
